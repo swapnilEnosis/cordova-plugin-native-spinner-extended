@@ -17,6 +17,7 @@
     NSString *red;
     NSString *green;
     NSString *blue;
+    NSNumber *fontSize;
 }
 
 @property (nonatomic, retain) UIActivityIndicatorView *indicator;
@@ -67,7 +68,16 @@
         [_messageView setBackgroundColor: [UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
         [_messageView setTextAlignment: NSTextAlignmentCenter];
         _messageView.center = (CGPoint){_overlay.center.x, _overlay.center.y + 40};
-        _messageView.font = [UIFont fontWithName:@"Helvetica" size:(10.0)];
+        
+        // Clamp fontSize between 8 and 30
+        CGFloat clampedFontSize = [fontSize floatValue];
+        if (clampedFontSize < 8.0) {
+            clampedFontSize = 8.0;
+        } else if (clampedFontSize > 30.0) {
+            clampedFontSize = 30.0;
+        }
+        _messageView.font = [UIFont fontWithName:@"Helvetica" size:clampedFontSize];
+        
         _messageView.lineBreakMode = NSLineBreakByCharWrapping;
         _messageView.numberOfLines = 0;
         [_overlay addSubview:_messageView];
@@ -93,6 +103,7 @@
     red = [command argumentAtIndex:4];
     green = [command argumentAtIndex:5];
     blue = [command argumentAtIndex:6];
+    fontSize = [command argumentAtIndex:7];
     
     UIViewController *rootViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
 
