@@ -86,6 +86,12 @@ SpinnerDialog.show(null,"Message",true,{overlayOpacity:0.70});
 // Change only text color (IOS only)
 SpinnerDialog.show(null,"message",true, { textColorRed: 0.1, textColorGreen: 0.1, textColorBlue: 1});
 
+// Change text font size (IOS only, default: 10, range: 8-30)
+SpinnerDialog.show(null,"message",true, { fontSize: 16 });
+
+// Combine multiple options (IOS only)
+SpinnerDialog.show(null,"Custom Message",true, { overlayOpacity: 0.5, fontSize: 18, textColorRed: 1, textColorGreen: 1, textColorBlue: 1 });
+
 // Hide spinner dialog
 SpinnerDialog.hide();
 ```
