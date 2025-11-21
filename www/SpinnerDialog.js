@@ -5,7 +5,7 @@ module.exports = {
     if (cancelCallback == true && typeof cancelCallback !== "function") {
       cancelCallback = function () { };
     }
-    var isPlatformIos = (navigator.userAgent.match(/iPad/i)) == "iPad" || (navigator.userAgent.match(/iPhone/i)) == "iPhone" ? true : false;
+    var isPlatformIos = /iPad|Macintosh|iPhone|iPod/.test(navigator.userAgent);
     var params = [title, message, !!cancelCallback];
     if (isPlatformIos) {
       if (typeof iosOptions != "object") {
